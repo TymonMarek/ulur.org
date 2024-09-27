@@ -1,0 +1,31 @@
+name: Docker Image CI for GHCR
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build image
+        run: docker build build -t ghcr.io/tymonmarek/ulur.org:latest
+
+      - name: Login to GHCR
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u tymonmarek --password-stdin
+
+      - name: Publish image to GHCR
+        run: docker push ghcr.io/tymonmarek/ulur.org:latest
+
+      - name: Logout from GHCR
+        run: docker logout ghcr.io
+
+      - name: Cleanup
+        run: docker system prune -f
