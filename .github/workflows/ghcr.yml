@@ -25,7 +25,7 @@ jobs:
         run: docker build . -t ghcr.io/tymonmarek/ulur.org:latest
 
       - name: Login to GHCR
-        run: echo ${{ secrets.GH_TOKEN }} | docker login ghcr.io -u tymonmarek --password-stdin
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u tymonmarek --password-stdin
 
       - name: Publish image to GHCR
         run: docker push ghcr.io/tymonmarek/ulur.org:latest
