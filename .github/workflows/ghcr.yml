@@ -22,7 +22,7 @@ jobs:
         run: npm run build
 
       - name: Build Container
-        run: docker build build -t ghcr.io/tymonmarek/ulur.org:latest
+        run: docker build . -t ghcr.io/tymonmarek/ulur.org:latest
 
       - name: Login to GHCR
         run: echo ${{ secrets.GH_TOKEN }} | docker login ghcr.io -u tymonmarek --password-stdin
