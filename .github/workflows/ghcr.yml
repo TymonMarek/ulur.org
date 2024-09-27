@@ -15,7 +15,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Build image
+      - name: Build NPM
+        run: npm run build
+
+      - name: Build Container
         run: docker build build -t ghcr.io/tymonmarek/ulur.org:latest
 
       - name: Login to GHCR
