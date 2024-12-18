@@ -32,3 +32,8 @@
 **/dist
 LICENSE
 README.md
+
+**/.angular
+.gitignore
+README.Docker.md
+.editorconfig
